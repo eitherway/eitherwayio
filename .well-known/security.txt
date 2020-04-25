@@ -1,0 +1,3 @@
+Contact: mailto:abuse@eitherway.io
+Encryption: https://eitherway.io/pgp-key.asc
+Preferred-Languages: en,de

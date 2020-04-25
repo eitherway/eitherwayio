@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>eitherway Blog on eitherway</title>
+    <link>https://eitherway.io/</link>
+    <description>Recent content in eitherway Blog on eitherway</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>All rights reserved.</copyright>
+    <lastBuildDate>Tue, 07 Apr 2020 18:53:21 +0200</lastBuildDate>
+    
+	<atom:link href="https://eitherway.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>How I created this blog</title>
+      <link>https://eitherway.io/story/how-i-created-this-blog/</link>
+      <pubDate>Tue, 14 Apr 2020 23:02:29 +0200</pubDate>
+      
+      <guid>https://eitherway.io/story/how-i-created-this-blog/</guid>
+      <description>How I created this blog  Tue, Apr 14, 2020
+ I wanted to write a blog about my start-up story. For that I needed a blog. This is the story of its creation. From it&amp;rsquo;s name, to the design, to the implementation. The concepts and tools I used included.
+01 Why I created this blog?   Make personal goals public to achieve them
+  Create inspiring blog articles for others</description>
+    </item>
+    
+    <item>
+      <title>Privacy Policy</title>
+      <link>https://eitherway.io/privacy/</link>
+      <pubDate>Tue, 07 Apr 2020 22:08:41 +0200</pubDate>
+      
+      <guid>https://eitherway.io/privacy/</guid>
+      <description>Privacy Policy  effective Tue, Apr 07, 2020
+ The short version I am using Simple Analytics as a way to see some statistics about my blog. However they don&amp;rsquo;t store or collect any personal data from you. For more information on what Simple Analytics collects (or mostly what they don&amp;rsquo;t collect) click here.
+I am not using any tracking cookies nor fingerprinting technology.
+To host this site, I am using Github Pages.</description>
+    </item>
+    
+    <item>
+      <title>Imprint</title>
+      <link>https://eitherway.io/imprint/</link>
+      <pubDate>Tue, 07 Apr 2020 22:08:35 +0200</pubDate>
+      
+      <guid>https://eitherway.io/imprint/</guid>
+      <description>Imprint   Website Owner and Person responsible for the content according to § 55 RStV Ramon Reschke
+Paul-Lincke-Straße 18
+66113 Saarbrücken
+E-Mail: hostmaster@eitherway.io
+Phone: 015678 316796
+All the contact information of me given on this website including any photos are explicitly for information purposes or to contact me.
+They shall not be used for sending advertisements, spam or the like.
+Should this information nevertheless be used for the above-mentioned purposes, I reserve the right to take legal action.</description>
+    </item>
+    
+  </channel>
+</rss>
