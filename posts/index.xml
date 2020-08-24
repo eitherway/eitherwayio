@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on eitherway</title>
+    <link>https://eitherway.io/posts/</link>
+    <description>Recent content in Posts on eitherway</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>All rights reserved.</copyright>
+    <lastBuildDate>Fri, 21 Aug 2020 13:46:58 +0200</lastBuildDate>
+    
+	<atom:link href="https://eitherway.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Tipps to Code more secure Web-Apps</title>
+      <link>https://eitherway.io/posts/tipps-secure-webapp/</link>
+      <pubDate>Fri, 21 Aug 2020 13:46:58 +0200</pubDate>
+      
+      <guid>https://eitherway.io/posts/tipps-secure-webapp/</guid>
+      <description>Tipps to Code more secure Web-Apps  Fri, Aug 21, 2020
+ Disclaimer: I am not a security expert.
+This post is a collection of quick tiny little things that could improve your security drastically. We would have a much safer web if more developers would know some of these resources and tips.
+Use a checklist This might sound a bit weird, but checklists are a great and powerful tool.</description>
+    </item>
+    
+  </channel>
+</rss>
