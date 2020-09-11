@@ -8,9 +8,9 @@
     
     
 
-    <title>Tipps to Code more secure Web-Apps | eitherway</title>
+    <title>You Are Planning Too Much | eitherway</title>
+    <link rel="prev" href="https://eitherway.io/posts/tipps-secure-webapp/" />
     
-    <link rel="next" href="https://eitherway.io/posts/you-are-planning-too-much/" />
 
     <link rel='shortcut icon' type='image/x-icon' href='/img/favicon.ico' />
     <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
@@ -29,7 +29,7 @@
     <script async defer data-skip-dnt="true" src="https://a.eitherway.io/app.js"></script>
     <noscript><img src="https://a.eitherway.io/image.gif" alt=""></noscript>
 
-    <link rel="canonical" href="https://eitherway.io/posts/tipps-secure-webapp/" />
+    <link rel="canonical" href="https://eitherway.io/posts/you-are-planning-too-much/" />
     <meta name="twitter:card" content="summary" />
     
     
@@ -38,9 +38,9 @@
     
 
     <meta property="og:locale" content="en_US">
-    <meta property="og:url" content="https://eitherway.io/posts/tipps-secure-webapp/">
+    <meta property="og:url" content="https://eitherway.io/posts/you-are-planning-too-much/">
     <meta property="og:site_name" content="eitherway">
-    <meta property="og:title" content="Tipps to Code more secure Web-Apps | eitherway">
+    <meta property="og:title" content="You Are Planning Too Much | eitherway">
 
     
         <meta property="og:image" content="https://eitherway.io/img/bitbert-square.png">
@@ -51,18 +51,18 @@
 {
   "@context": "http://schema.org",
   "@type": "BlogPosting",
-  "headline": "Tipps to Code more secure Web-Apps | eitherway",
+  "headline": "You Are Planning Too Much | eitherway",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https:\/\/eitherway.io\/posts\/tipps-secure-webapp\/"
+    "@id": "https:\/\/eitherway.io\/posts\/you-are-planning-too-much\/"
   },
   
   "genre": "posts",
   
-  "wordcount":  697 ,
-  "url": "https:\/\/eitherway.io\/posts\/tipps-secure-webapp\/",
-  "datePublished": "2020-08-24T15:46:58\u002b02:00",
-  "dateModified": "2020-08-24T15:46:58\u002b02:00",
+  "wordcount":  142 ,
+  "url": "https:\/\/eitherway.io\/posts\/you-are-planning-too-much\/",
+  "datePublished": "2020-09-11T11:45:27\u002b02:00",
+  "dateModified": "2020-09-11T11:45:27\u002b02:00",
   "license": "All rights reserved.",
   
   "author": {
@@ -163,72 +163,20 @@
     
     <h1 class="o-h1__h1">            
 
-<span class="o-h1__colored">Tipps</span> to Code more secure <span class="o-h1__colored">Web-Apps</span>
+You are <span class="o-h1__colored">planning too much</span>
 
 </h1>
-    <p class="o-h1__under">Mon, Aug 24, 2020</p>
+    <p class="o-h1__under">Fri, Sep 11, 2020</p>
 </div>
-<p class="o-text"><strong class="o-bold">Disclaimer:</strong> I am not a security expert.</p>
-<p class="o-text">This post is a collection of quick tiny little things that could improve your security drastically. We would have a much safer web if more developers would know some of these resources and tips.</p>
-<h2 class="o-h2" id="use-a-checklist">Use a checklist</h2>
-<p class="o-text">This might sound a bit weird, but checklists are a great and powerful tool.</p>
-<p class="o-text">Ever heard of the <a class="o-link" href="https://www.who.int/patientsafety/safesurgery/checklist/en/">Surgical Safety Checklist from the WHO</a>? In their study, this checklist reduced the morbidity rate of patients by almost 50% <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>.
-This effectiveness will also apply to WebSecurity.</p>
-<p class="o-text">You will forget or don&rsquo;t even know about some vulnerabilities. I recommend the <a class="o-link" href="https://cheatsheetseries.owasp.org/Glossary.html">OWASP Cheatsheet Project</a>. The usefulness of this project is incredible. For one of my own <a class="o-link" href="https://likeknob.com/">Web-Apps</a>, I forgot to install a CSRF Protection but saw them on the Cheatsheet.</p>
-<p class="o-text">I personally forgot to implement a CSRF protection for certain actions in <a class="o-link" href="https://likeknob.com/">my Web-App</a>.</p>
-<h2 class="o-h2" id="your-users-are-evil">Your users are evil</h2>
-<p class="o-text">Or you should at least pretend so. Never trust any input that comes from your users. Imagine them as hackers.</p>
-<p class="o-text">This will put you in the right mindset.</p>
-<p class="o-text">Some of the <a class="o-link" href="https://owasp.org/www-project-top-ten/">most common vulnerabilities</a> come from improper input handling.</p>
-<p class="o-text">Can you put restrictions on the input of your web app? Then do it. The stricter the better.</p>
-<p class="o-text">This also accounts for strange things like: Does your App accept a 1GB big JSON file?</p>
-<p class="o-text">Considering strange inputs, here is a <a class="o-link" href="https://github.com/minimaxir/big-list-of-naughty-strings/">list of strings</a> which may break some applications. And you may test if that also breaks your app.</p>
-<p class="o-text">Additionally, ask yourself: &ldquo;How would I hack my own app?&rdquo;</p>
-<h2 class="o-h2" id="log--monitor-things">Log &amp; Monitor things</h2>
-<p class="o-text">This is also a great point from a non-security perspective. You should always know when something is wrong.</p>
-<p class="o-text">Only if you know something is wrong, you can fix it. I will again recommend a <a class="o-link" href="https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html">OWASP Cheatsheet about Logging</a>.</p>
-<p class="o-text">If you noticed a security incident, be open to your users. Don&rsquo;t try to hide something.</p>
-<p class="o-text">Being open about such incidents is important and builds trust. In most cases you are also legally required (<a class="o-link" href="https://gdpr-info.eu/art-34-gdpr/">GDPR Art. 34</a>) to inform your users.</p>
-<h2 class="o-h2" id="make-it-easier-for-security-researchers-to-contact-you">Make it easier for Security Researchers to contact you</h2>
-<p class="o-text">So, you tried your best to secure your app. Most likely there will be still vulnerabilities in there.</p>
-<p class="o-text">For this reason: Make it easy for security researchers to reach out to you.</p>
-<p class="o-text">Signal them you will not go after them if they didn&rsquo;t break any laws. There is a high chance many security researchers will not search or report vulnerabilities because they are afraid of legal retaliation.</p>
-<p class="o-text">So, how do you do that?</p>
-<ul class="o-list">
-<li class="o-list__item">
-<p class="o-text">Provide a Responsible Disclosure Policy.</p>
-<p class="o-text">In short, it states what security researchers are allowed to test and where to report them.</p>
-<p class="o-text">Bugcrowd (one of the biggest bug bounty platforms) provides a framework for <a class="o-link" href="https://github.com/bugcrowd/disclosure-policy">creating such a policy</a> and a <a class="o-link" href="https://www.bugcrowd.com/resource/what-is-responsible-disclosure/">more in-depth article about Responsible Disclosure Policies</a></p>
-</li>
-<li class="o-list__item">
-<p class="o-text">Provide a security.txt file.</p>
-<p class="o-text">This is a <a class="o-link" href="https://securitytxt.org/">standard proposed by a security researcher</a>.</p>
-<p class="o-text">It&rsquo;s basically a text file that states where you can disclose security vulnerabilities and how. You can create it easily via <a class="o-link" href="https://securitytxt.org/">the official website</a>.</p>
-</li>
-<li class="o-list__item">
-<p class="o-text">Provide a <code>security@example.com</code> mail address.</p>
-<p class="o-text">Many researchers try this first.</p>
-<p class="o-text">If it fails, there is a lower chance a vulnerability will be reported to you.</p>
-</li>
-</ul>
-<p class="o-text">If you don&rsquo;t have any of these, it&rsquo;s like a sign &ldquo;No Good Hackers allowed here.&rdquo;</p>
-<p class="o-text">If you want to read more about why we need more hackers, there is an excellent article <a class="o-link" href="https://medium.com/@yakko.majuri/the-internet-is-too-unsafe-we-need-more-hackers-c9742fc1a03b">here</a>.</p>
-<h2 class="o-h2" id="last-words">Last words</h2>
-<p class="o-text">Security is hard. It takes time and work to do things more securely.</p>
-<p class="o-text">For the sake of a better web, try it.</p>
-<p class="o-text">We need more hackers that hack for good and more people that are aware of those pitfalls.</p>
-<p class="o-text">Further recommendation:</p>
-<p class="o-text">There are also techniques to write more secure code. I&rsquo;ve heard good things about the book &ldquo;Secure by Design&rdquo; from Deogun, Johnsson, and Sawano.</p>
-<p class="o-text">Take a look at a <a class="o-link" href="https://henrikwarne.com/2020/03/22/secure-by-design/">good summary</a>.</p>
-<p class="o-text"><strong class="o-bold">Got a website? I would be happy if you take a look at my <a class="o-link" href="https://likeknob.com/">new Project</a>.</strong></p>
-<section class="footnotes" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn:1" role="doc-endnote">
-<p class="o-text">Haynes, A. B. <em>et al.</em> (2009) ‘A Surgical Safety Checklist to Reduce Morbidity and Mortality in a Global Population’, <em>New England Journal of Medicine</em>. Massachusetts Medical Society, 360(5), pp. 491–499. doi: <a class="o-link" href="https://doi.org/10.1056/NEJMsa0810119">10.1056/NEJMsa0810119</a>. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-</ol>
-</section>
+<p class="o-text">Or at least this is one of the things I realized myself. Why do I say that?
+<br><br></p>
+<p class="o-text">I&rsquo;ve built a project and I invested quite some time into it. I planned how to deploy it, how to market it, and how to launch it. But after some customer conversation, I realized: It will most likely fail.
+<br><br></p>
+<p class="o-text">So all these plans will not actually help me anything. It would have helped me a lot more if I have actually done these things: marketing &amp; launching. If I had done that, I would have realized earlier that this project will fail.
+<br><br></p>
+<p class="o-text"><strong class="o-bold">Plans are also a form of procrastination.</strong>
+<br><br></p>
+<p class="o-text">So as you are sitting in front of your computer right now and reading this article: Is there something you should be doing to reach your goal?</p>
 
 
     <div class="o-back-home-link"><a href="https://eitherway.io/" aria-label="Back to Homepage" class="o-back-home-link__link o-more-decent-link o-more-decent-link--home">

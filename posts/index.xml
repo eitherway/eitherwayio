@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved.</copyright>
-    <lastBuildDate>Mon, 24 Aug 2020 15:46:58 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 11 Sep 2020 11:45:27 +0200</lastBuildDate>
     
 	<atom:link href="https://eitherway.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>You Are Planning Too Much</title>
+      <link>https://eitherway.io/posts/you-are-planning-too-much/</link>
+      <pubDate>Fri, 11 Sep 2020 11:45:27 +0200</pubDate>
+      
+      <guid>https://eitherway.io/posts/you-are-planning-too-much/</guid>
+      <description>You are planning too much  Fri, Sep 11, 2020
+ Or at least this is one of the things I realized myself. Why do I say that? I&amp;rsquo;ve built a project and I invested quite some time into it. I planned how to deploy it, how to market it, and how to launch it. But after some customer conversation, I realized: It will most likely fail. So all these plans will not actually help me anything.</description>
+    </item>
     
     <item>
       <title>Tipps to Code more secure Web-Apps</title>
