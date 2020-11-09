@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved.</copyright>
-    <lastBuildDate>Fri, 11 Sep 2020 11:45:27 +0200</lastBuildDate>
-    
-	<atom:link href="https://eitherway.io/posts/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 11 Sep 2020 11:45:27 +0200</lastBuildDate><atom:link href="https://eitherway.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>You Are Planning Too Much</title>
       <link>https://eitherway.io/posts/you-are-planning-too-much/</link>
