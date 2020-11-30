@@ -9,6 +9,17 @@
     <copyright>All rights reserved.</copyright>
     <lastBuildDate>Tue, 07 Apr 2020 18:53:21 +0200</lastBuildDate><atom:link href="https://eitherway.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Searching an E-Book for malicious code with VIM</title>
+      <link>https://eitherway.io/posts/epub-malicious-code/</link>
+      <pubDate>Mon, 30 Nov 2020 15:46:58 +0200</pubDate>
+      
+      <guid>https://eitherway.io/posts/epub-malicious-code/</guid>
+      <description>Searching an E-Book for malicious code with VIM  Mon, Nov 30, 2020
+ I recently received a rather suspicious E-Book in epub format. Like PDFs these can also contain malicious code. I wanted to open it, but I wasn&amp;rsquo;t sure if I could trust it.
+In the past, I would have probably deleted it straight away. But this time I wanted to actually know if there is malicious code inside this file.</description>
+    </item>
+    
+    <item>
       <title>You Are Planning Too Much</title>
       <link>https://eitherway.io/posts/you-are-planning-too-much/</link>
       <pubDate>Fri, 11 Sep 2020 11:45:27 +0200</pubDate>
