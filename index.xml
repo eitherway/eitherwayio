@@ -15,8 +15,8 @@
       
       <guid>https://eitherway.io/posts/epub-malicious-code/</guid>
       <description>Searching an E-Book for malicious code with VIM  Mon, Nov 30, 2020
- I recently received a rather suspicious E-Book in epub format. Like PDFs these can also contain malicious code. I wanted to open it, but I wasn&amp;rsquo;t sure if I could trust it.
-In the past, I would have probably deleted it straight away. But this time I wanted to actually know if there is malicious code inside this file.</description>
+ I recently received a rather suspicious E-Book in epub format. Like PDFs, these can also contain malicious code. I wanted to open it, but I wasn&amp;rsquo;t sure if I could trust it.
+In the past, I would have deleted it straight away. But this time I wanted to actually know if there is malicious code inside this file.</description>
     </item>
     
     <item>

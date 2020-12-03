@@ -59,7 +59,7 @@
   
   "genre": "posts",
   
-  "wordcount":  736 ,
+  "wordcount":  713 ,
   "url": "https:\/\/eitherway.io\/posts\/epub-malicious-code\/",
   "datePublished": "2020-11-30T15:46:58\u002b02:00",
   "dateModified": "2020-11-30T15:46:58\u002b02:00",
@@ -168,21 +168,21 @@ Searching an <span class="o-h1__colored">E-Book</span> for <span class="o-h1__co
 </h1>
     <p class="o-h1__under">Mon, Nov 30, 2020</p>
 </div>
-<p class="o-text">I recently received a rather suspicious E-Book in epub format. Like PDFs these can also contain malicious code. I wanted to open it, but I wasn&rsquo;t sure if I could trust it.</p>
-<p class="o-text">In the past, I would have probably deleted it straight away. But this time I wanted to actually know if there is malicious code inside this file. So, how do I find that out?</p>
+<p class="o-text">I recently received a rather suspicious E-Book in epub format. Like PDFs, these can also contain malicious code. I wanted to open it, but I wasn&rsquo;t sure if I could trust it.</p>
+<p class="o-text">In the past, I would have deleted it straight away. But this time I wanted to actually know if there is malicious code inside this file. So, how do I find that out?</p>
 <h2 class="o-h2" id="what-is-an-epub-">What is an .epub ?</h2>
-<p class="o-text">First I figured, I needed an understandement of what an <code>.epub</code> is and what contents are in it.
+<p class="o-text">First I figured, I needed an understanding of what a <code>.epub</code> is and what contents are in it.
 <br>
 <br></p>
 <p class="o-text">I found this <a class="o-link" href="https://www.w3.org/publishing/epub3/epub-contentdocs.html#pls-examples">W3 specification</a>. Which I of course read in every detail, because I absolutely want to implement an <code>.epub</code> reader with every detail.</p>
-<p class="o-text">However I noticed two main points:</p>
+<p class="o-text">However, I noticed two main points:</p>
 <ol>
-<li class="o-list__item">Epub Files could have SVG, XML, HTML, CSS in it</li>
+<li class="o-list__item"><code>.epub</code> Files could have SVG, XML, HTML, CSS in it</li>
 <li class="o-list__item">There is a section about security considerations</li>
 </ol>
 <br>
-<p class="o-text">The specification suggest that there are some files packaged into the <code>.epub</code>. So I tried the old &lsquo;rename it to zip and open it&rsquo; trick and voilà it worked:</p>
-<div class="highlight"><pre class="chroma"><code class="language-zsh" data-lang="zsh">$ tree
+<p class="o-text">The specification suggests that there are some files packaged into the <code>.epub</code>. So I tried the old &lsquo;rename it to <code>.zip</code> and open it&rsquo; trick and voilà it worked:</p>
+<div class="highlight"><pre class="chroma"><code class="language-zsh" data-lang="zsh">$ tree                                                                                             <span class="sb">`</span>
 .
 ├── META-INF
 │   └── container.xml
@@ -202,57 +202,57 @@ Searching an <span class="o-h1__colored">E-Book</span> for <span class="o-h1__co
 │   └── part0031.html
 ├── titlepage.xhtml
 └── toc.ncx
-</code></pre></div><p class="o-text">Lot&rsquo;s of HTML, Images and CSS. When you open these <code>.ncx</code> and <code>.opf</code> files, it turns out these are just XML.</p>
+</code></pre></div><p class="o-text">Lots of HTML, Images and CSS. When you open these <code>.ncx</code> and <code>.opf</code> files, it turns out these are XML.</p>
 <h2 class="o-h2" id="what-attacks-are-possible">What attacks are possible?</h2>
 <p class="o-text">I had only known that <code>.epub</code> files could contain malicious code, but not how this code could be executed.</p>
 <br>
-<p class="o-text">The specification states that one can do scripting with JavaScript. Potentially someone could read files from the disk or read contents from the clipboard (when the <code>.epub</code> reader wasn&rsquo;t built with this in mind).</p>
+<p class="o-text">The specification states that one can do scripting with JavaScript. An attacker could read files from the disk or read contents from the clipboard. But: Your E-Book Reader has to be vulnerable to this.</p>
 <br>
 <p class="o-text">So we have to look for things like this:</p>
 <div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;...&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </code></pre></div><p class="o-text">or this:</p>
 <div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;javascript:...&#34;</span><span class="p">&gt;</span>Link<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
 </code></pre></div><br>
-<p class="o-text">There is also <a class="o-link" href="https://security.stackexchange.com/questions/176223/how-to-detect-malicious-fb2-epub-file">an Security Stack Exchange Question</a>, which gives a hint that someone could also do an <a class="o-link" href="https://portswigger.net/web-security/xxe">XXE</a>.</p>
-<p class="o-text">These XML external entity injection, can look this:</p>
+<p class="o-text">There is also <a class="o-link" href="https://security.stackexchange.com/questions/176223/how-to-detect-malicious-fb2-epub-file">a Security Stack Exchange Question</a>, which gives a hint that someone could also do an <a class="o-link" href="https://portswigger.net/web-security/xxe">XXE</a>.</p>
+<p class="o-text">These XML external entity injection can look like this:</p>
 <div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;!DOCTYPE foo [ &lt;!ENTITY entity_name SYSTEM &#34;file:///etc/passwd&#34;&gt;</span> ]&gt;
-</code></pre></div><p class="o-text">We are just going to be ignorant how these attack exactly work. Our target is to recognize the patterns of malicious code not become a web security specialist.</p>
+</code></pre></div><p class="o-text">I am just going to be ignorant how these attack exactly work. My target is to recognize the patterns of malicious code.</p>
 <br>
 <p class="o-text">For those interested, look at the <a class="o-link" href="https://portswigger.net/web-security">Web Security Academy from PortSwigger</a>.</p>
 <h2 class="o-h2" id="searching-the-files">Searching the files</h2>
-<p class="o-text">I tested a few <code>.epub</code> files and depending on the file, there could be 30 or so html files be in there.</p>
-<p class="o-text">In this next part, we could write some fancy regex based automated malware scanner for <code>.epub</code> files. OR we use the best neural network in the world that every human has built on it&rsquo;s shoulders: our brain.</p>
+<p class="o-text">I tested a few <code>.epub</code> files and depending on the file, there could be 30 or so HTML files be in there.</p>
+<p class="o-text">In this next part, I could write some fancy regex based automated malware scanner for <code>.epub</code> files. OR I use the best neural network in the world every human has built on his shoulders: my brain.</p>
 <br>
-<p class="o-text">The thing is, we don&rsquo;t want to manually open each of those files and close each file. We want to look at them, but fast and easy.</p>
+<p class="o-text">The thing is, I don&rsquo;t want to manually open each of those files and close each file. I want to look at them, but fast and easy.</p>
 <h3 class="o-h3" id="tools">Tools</h3>
-<p class="o-text">Luckily there is a text editor which many are obsessed with closing it: VIM.</p>
+<p class="o-text">Luckily there is a text editor which many are obsessed with closing: VIM.</p>
 <br>
-<p class="o-text">This is easily one of the best and simplest solutions. By saying this, let&rsquo;s add something to our <code>.vimrc</code> configuration file.</p>
+<p class="o-text">This is easily one of the best and simplest solutions. By saying this, let&rsquo;s add something to my <code>.vimrc</code> configuration file.</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="k">if</span> <span class="nv">$VIMENV</span> <span class="o">==</span> <span class="s1">&#39;prev&#39;</span>
   noremap &lt;Space&gt; :n&lt;CR&gt;
   noremap &lt;Backspace&gt; :N&lt;CR&gt;
   <span class="nb">set</span> noswapfile
 endif
-</code></pre></div><p class="o-text">This tells vim if the variable <code>VIMENV</code> is set to <code>prev</code>, remap the space key to move a tab forwards and remap the Backspace key to move a tab backwards.</p>
-<p class="o-text">Beware this trick/idea is from the amazing <a class="o-link" href="https://twitter.com/tomnomnom">Tomnomnom</a>. I highly recommend his <a class="o-link" href="https://www.youtube.com/results?search_query=tomnomnom">youtube videos</a> for more vim magic and bug bounty stuff.</p>
+</code></pre></div><p class="o-text">This tells vim if <code>VIMENV</code> is set to <code>prev</code>, remap space to move a tab forwards and remap Backspace to move a tab backwards.</p>
+<p class="o-text">Beware this trick/idea is from the amazing <a class="o-link" href="https://twitter.com/tomnomnom">Tomnomnom</a>. I recommend his <a class="o-link" href="https://www.youtube.com/results?search_query=tomnomnom">youtube videos</a> for more vim magic and bug bounty stuff.</p>
 <br>
 <br>
 <p class="o-text">Great, how do I use that configuration?</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nv">VIMENV</span><span class="o">=</span>prev vim file.txt
-</code></pre></div><p class="o-text">To make that even easier 😉, we can add an alias to our <code>.bashrc</code> or <code>.zshrc</code> file:</p>
+</code></pre></div><p class="o-text">To make that even easier 😉, I add an alias to my <code>.zshrc</code> file:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">alias</span> <span class="nv">vimprev</span><span class="o">=</span><span class="s2">&#34;VIMENV=prev vim&#34;</span>
 </code></pre></div><br>
-<p class="o-text">After this, we simply <code>cd</code> to our <code>epub</code> dir and execute:</p>
+<p class="o-text">After this, I simply <code>cd</code> to my <code>epub</code> dir and execute:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">vimprev <span class="k">$(</span>find . -type f<span class="k">)</span>
-</code></pre></div><p class="o-text">This will open all the files in the current dir in vim tabs. We can simply tab through them with space and backspace.</p>
-<p class="o-text">This should not take too long, because our brains are normally extremely fast in pattern recognition and anomaly detection. If something looks fishy, take a second look.</p>
+</code></pre></div><p class="o-text">This will open all the files in the current dir in vim tabs. I can tab through them with space and backspace.</p>
+<p class="o-text">This took about 5 minutes for me, because our brains are normally extremely fast in pattern recognition and anomaly detection. If something looks fishy, I take a second look.</p>
 <br>
-<p class="o-text">After you are finished with that, you are probably wondering how to exit vim:</p>
+<p class="o-text">You are probably wondering how to exit vim:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">:qall!
 </code></pre></div><h2 class="o-h2" id="good-e-books">Good E-Books</h2>
 <p class="o-text">Interested on trying it yourself? Or do you want read some copyright free books (at least in the US)? Look at <a class="o-link" href="https://www.gutenberg.org/">Project Gutenberg</a> for royalty free E-Books.</p>
 <br>
-<p class="o-text">If you have any questions, let me know on twitter (my DMs are open).</p>
+<p class="o-text">If you have any questions, let me know on Twitter (my DMs are open).</p>
 
 
     <div class="o-back-home-link"><a href="https://eitherway.io/" aria-label="Back to Homepage" class="o-back-home-link__link o-more-decent-link o-more-decent-link--home">
