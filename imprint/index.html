@@ -180,6 +180,12 @@
 <p class="o-text">They shall not be used for sending advertisements, spam or the like.</p>
 <p class="o-text">Should this information nevertheless be used for the above-mentioned purposes, I reserve the right to take legal action.</p>
 
+<div id="rating" class="o-rating">
+    <div class="o-inline-box"><span class="o-inline-box__important">Wait! Before you go</span>
+        <span class="o-inline-box__normal"> and do important stuff:<br>Would you mind give me a little feedback? It would really help me to improve my articles.</span>
+    </div>
+    <p class="o-rating__question">What rating would you give this article?</p>
+</div>
 
     <div class="o-back-home-link"><a href="https://eitherway.io/" aria-label="Back to Homepage" class="o-back-home-link__link o-more-decent-link o-more-decent-link--home">
             <div class="o-back-home--wr">
@@ -194,6 +200,27 @@
         </a>
     </div>
 
+<script src="https://scripts.likeknob.com/script.min.js"></script>
+<script>
+    var rating1 = document.getElementById('rating')
+
+    var options = {
+        cssReset: false,
+        question: "What did you not like about this article?",
+        ratingBarContainerClass: "o-rating__bar", 
+        questionContainerClass: "o-rating__question-container",
+        questionClass: "o-rating__question",
+        inputClass: "o-rating__input",
+        buttonContainerClass: 'o-rating__button-container',
+        sendButtonClass: "o-rating__button",
+        inputStyle: "",
+        sendButtonStyle: "",
+        questionStyle: "",
+        questionContainerStyle: "",
+    }
+
+    likeKnob(rating1, "3676328c-d7ef-4f56-a6dc-ec8e35563c10", options)
+</script>
 
 </div>
 <div class="o-footer o-base-wrapper__footer">
