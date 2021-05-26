@@ -8,9 +8,9 @@
     
     
 
-    <title>Searching an E-Book for malicious code with VIM | eitherway</title>
-    <link rel="prev" href="https://eitherway.io/posts/you-are-planning-too-much/" />
-    <link rel="next" href="https://eitherway.io/posts/raspberry-pi-nas/" />
+    <title>Build a Raspberry Pi NAS they said. It will be easy... | eitherway</title>
+    <link rel="prev" href="https://eitherway.io/posts/epub-malicious-code/" />
+    
 
     <link rel='shortcut icon' type='image/x-icon' href='/img/favicon.ico' />
     <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
@@ -29,8 +29,9 @@
     <script async defer data-skip-dnt="true" src="https://a.eitherway.io/app.js"></script>
     <noscript><img src="https://a.eitherway.io/image.gif" alt=""></noscript>
 
-    <link rel="canonical" href="https://eitherway.io/posts/epub-malicious-code/" />
-    <meta name="twitter:card" content="summary" />
+    <link rel="canonical" href="https://eitherway.io/posts/raspberry-pi-nas/" />
+    
+        <meta name="twitter:card" content="summary_large_image" />
     
     
     <meta name="twitter:site" content="@eitherwayio" />
@@ -38,9 +39,9 @@
     
 
     <meta property="og:locale" content="en_US">
-    <meta property="og:url" content="https://eitherway.io/posts/epub-malicious-code/">
+    <meta property="og:url" content="https://eitherway.io/posts/raspberry-pi-nas/">
     <meta property="og:site_name" content="eitherway">
-    <meta property="og:title" content="Searching an E-Book for malicious code with VIM | eitherway">
+    <meta property="og:title" content="Build a Raspberry Pi NAS they said. It will be easy... | eitherway">
 
     
         <meta property="og:image" content="https://eitherway.io/img/bitbert-square.png">
@@ -51,18 +52,18 @@
 {
   "@context": "http://schema.org",
   "@type": "BlogPosting",
-  "headline": "Searching an E-Book for malicious code with VIM | eitherway",
+  "headline": "Build a Raspberry Pi NAS they said. It will be easy... | eitherway",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https:\/\/eitherway.io\/posts\/epub-malicious-code\/"
+    "@id": "https:\/\/eitherway.io\/posts\/raspberry-pi-nas\/"
   },
   
   "genre": "posts",
   
-  "wordcount":  712 ,
-  "url": "https:\/\/eitherway.io\/posts\/epub-malicious-code\/",
-  "datePublished": "2020-11-30T15:46:58\u002b02:00",
-  "dateModified": "2020-11-30T15:46:58\u002b02:00",
+  "wordcount":  651 ,
+  "url": "https:\/\/eitherway.io\/posts\/raspberry-pi-nas\/",
+  "datePublished": "2021-05-15T13:18:56\u002b02:00",
+  "dateModified": "2021-05-15T13:18:56\u002b02:00",
   "license": "All rights reserved.",
   
   "author": {
@@ -161,98 +162,84 @@
     
     
     
-    <h1 class="o-h1__h1">            
+    <h1 class="o-h1__h1">
 
-Searching an <span class="o-h1__colored">E-Book</span> for <span class="o-h1__colored">malicious code</span> with VIM
+Build a Raspberry Pi <span class="o-h1__colored">NAS</span> they said. It will be <span class="o-h1__colored">easy</span>...
 
 </h1>
-    <p class="o-h1__under">Mon, Nov 30, 2020</p>
+    <p class="o-h1__under">* Nobody said that, I had the idea myself.</p>
 </div>
-<p class="o-text">I recently received a rather suspicious E-Book in epub format. Like PDFs, these can also contain malicious code. I wanted to open it, but I wasn&rsquo;t sure if I could trust it.</p>
-<p class="o-text">In the past, I would have deleted it straight away. But this time I wanted to actually know if there is malicious code inside this file. So, how do I find that out?</p>
-<h2 class="o-h2" id="what-is-an-epub-">What is an .epub ?</h2>
-<p class="o-text">First I figured, I needed an understanding of what a <code>.epub</code> is and what contents are in it.
-<br>
-<br></p>
-<p class="o-text">I found this <a class="o-link" href="https://www.w3.org/publishing/epub3/epub-contentdocs.html#pls-examples">W3 specification</a>. Which I of course read in every detail, because I absolutely want to implement an <code>.epub</code> reader with every detail.</p>
-<p class="o-text">However, I noticed two main points:</p>
-<ol>
-<li class="o-list__item"><code>.epub</code> Files could have SVG, XML, HTML, CSS in it</li>
-<li class="o-list__item">There is a section about security considerations</li>
-</ol>
-<br>
-<p class="o-text">The specification suggests that there are some files packaged into the <code>.epub</code>. So I tried the old &lsquo;rename it to <code>.zip</code> and open it&rsquo; trick and voilà it worked:</p>
-<div class="highlight"><pre class="chroma"><code class="language-zsh" data-lang="zsh">$ tree
-.
-├── META-INF
-│   └── container.xml
-├── content.opf
-├── cover.jpeg
-├── images
-│   ├── 00002.jpeg
-│   ├── ...
-│   └── 00025.jpeg
-├── mimetype
-├── page_styles.css
-├── stylesheet.css
-├── text
-│   ├── part0000.html
-│   ├── part0001.html
-│   ├── ...
-│   └── part0031.html
-├── titlepage.xhtml
-└── toc.ncx
-</code></pre></div><p class="o-text">Lots of HTML, Images and CSS. When you open these <code>.ncx</code> and <code>.opf</code> files, it turns out these are XML.</p>
-<h2 class="o-h2" id="what-attacks-are-possible">What attacks are possible?</h2>
-<p class="o-text">I had only known that <code>.epub</code> files could contain malicious code, but not how this code could be executed.</p>
-<br>
-<p class="o-text">The specification states that one can do scripting with JavaScript. An attacker could read files from the disk or read contents from the clipboard. But: Your E-Book Reader has to be vulnerable to this.</p>
-<br>
-<p class="o-text">So we have to look for things like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;...&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-</code></pre></div><p class="o-text">or this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;javascript:...&#34;</span><span class="p">&gt;</span>Link<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
-</code></pre></div><br>
-<p class="o-text">There is also <a class="o-link" href="https://security.stackexchange.com/questions/176223/how-to-detect-malicious-fb2-epub-file">a Security Stack Exchange Question</a>, which gives a hint that someone could also do an <a class="o-link" href="https://portswigger.net/web-security/xxe">XXE</a>.</p>
-<p class="o-text">These XML external entity injection can look like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;!DOCTYPE foo [ &lt;!ENTITY entity_name SYSTEM &#34;file:///etc/passwd&#34;&gt;</span> ]&gt;
-</code></pre></div><p class="o-text">I am just going to be ignorant how these attack exactly work. My target is to recognize the patterns of malicious code.</p>
-<br>
-<p class="o-text">For those interested, look at the <a class="o-link" href="https://portswigger.net/web-security">Web Security Academy from PortSwigger</a>.</p>
-<h2 class="o-h2" id="searching-the-files">Searching the files</h2>
-<p class="o-text">I tested a few <code>.epub</code> files and depending on the file, there could be 30 or so HTML files be in there.</p>
-<p class="o-text">In this next part, I could write some fancy regex based automated malware scanner for <code>.epub</code> files. OR I use the best neural network in the world every human has built on his shoulders: my brain.</p>
-<br>
-<p class="o-text">The thing is, I don&rsquo;t want to manually open each of those files and close each file. I want to look at them, but fast and easy.</p>
-<h3 class="o-h3" id="tools">Tools</h3>
-<p class="o-text">Luckily there is a text editor which many are obsessed with closing: VIM.</p>
-<br>
-<p class="o-text">This is easily one of the best and simplest solutions. By saying this, let&rsquo;s add something to my <code>.vimrc</code> configuration file.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="k">if</span> <span class="nv">$VIMENV</span> <span class="o">==</span> <span class="s1">&#39;prev&#39;</span>
-  noremap &lt;Space&gt; :n&lt;CR&gt;
-  noremap &lt;Backspace&gt; :N&lt;CR&gt;
-  <span class="nb">set</span> noswapfile
-endif
-</code></pre></div><p class="o-text">This tells vim if <code>VIMENV</code> is set to <code>prev</code>, remap space to move a tab forwards and remap Backspace to move a tab backwards.</p>
-<p class="o-text">Beware this trick/idea is from the amazing <a class="o-link" href="https://twitter.com/tomnomnom">Tomnomnom</a>. I recommend his <a class="o-link" href="https://www.youtube.com/results?search_query=tomnomnom">youtube videos</a> for more vim magic and bug bounty stuff.</p>
+<p class="o-text">First off, what were the goals? The NAS should be:</p>
+<ul class="o-list">
+<li class="o-list__item">redundant and protect from a drive failure.</li>
+<li class="o-list__item">cheap.</li>
+<li class="o-list__item">an easy to use solution for my onsite backup.</li>
+<li class="o-list__item">powered by a single USB-C Cable.</li>
+</ul>
+<h2 class="o-h2" id="just-connect-two-ssds-via-usb-to-a-raspberry-pi-4-and-run-the-nas-what-could-go-wrong">Just connect two SSDs via USB to a Raspberry Pi 4 and run the NAS. What could go wrong?</h2>
+<p class="o-text">Yeah, no:</p>
+<p class="o-text"><figure class="o-img">
+    <img class="o-img__img" src="/img/posts/pi-nas/pi-mess.jpg" alt="Raspberry Pi Mess - two power cables for one Pi"  />
+</figure></p>
+<h3 class="o-h3" id="why-not-power-it-through-an-external-usb-hub">Why not power it through an external USB-Hub?</h3>
+<p class="o-text">Yeah, look at the picture above: <em>That is ugly.</em></p>
+<h3 class="o-h3" id="why-ssds-ssds-are-not-cheap">Why SSDs? SSDs are not cheap.</h3>
+<p class="o-text">SSDs have two main advantages. First off they are fast and more importantly they don&rsquo;t consume much power.</p>
+<p class="o-text">The Raspberry Pi 4 has a <a class="o-link" href="https://www.raspberrypi.org/documentation/hardware/raspberrypi/power/README.md">power limit of 1.2 A on the USB Ports</a>. So a two traditional hard drive would drain too much power and the Pi won&rsquo;t boot. SSDs don&rsquo;t consume so much power and so the Pi 4 should &ldquo;theoretical&rdquo; have no problem.</p>
+<p class="o-text">Turns out two SSDs drain still too much power.</p>
+<p class="o-text">In the process of fixing this problem I&rsquo;ve tried finding SSDs which draw less power.</p>
+<p class="o-text">Models I&rsquo;ve tested:</p>
+<ul class="o-list">
+<li class="o-list__item">SanDisk Ultra 3D SSD</li>
+<li class="o-list__item">Kingston A400</li>
+<li class="o-list__item">Samsung 870 Evo</li>
+<li class="o-list__item">Crucial MX500</li>
+</ul>
+<p class="o-text">I&rsquo;ve had problems with all of them, sometimes the SSD randomly disconnected and sometimes I&rsquo;ve got very slow IO.</p>
+<h2 class="o-h2" id="the-solution-to-the-power-problem">The solution to the Power problem</h2>
+<p class="o-text">After googling a bit, I&rsquo;ve found a <a class="o-link" href="https://raspberrypi.stackexchange.com/questions/104038/can-the-pi-4-power-2-external-usb-3-hdds">a little hacky but wonderful solution to this problem</a>:</p>
+<p class="o-text">Just solder the 5V GPIO Pin with the Ubat PIN of the USB socket, and it will be fine.</p>
+<p class="o-text"><figure class="o-img">
+    <img class="o-img__img" src="/img/posts/pi-nas/pi-back.jpg" alt="Raspberry Pi - Ubat PIN soldered to USB socket"  />
+</figure></p>
+<p class="o-text">The last time I soldered was 8 years ago. So I did it like every good global corporation: I outsourced the problem.</p>
+<p class="o-text">Another tip of the googled solution was that you should connect a small capacitor to the 5V PIN and the GND Pin. Thank you again, <a class="o-link" href="https://raspberrypi.stackexchange.com/users/33476/dmitry-grigoryev">Dmitry Grigoryev</a>!
+<figure class="o-img">
+    <img class="o-img__img" src="/img/posts/pi-nas/pi-capacitor.jpg" alt="Capacitor connected to GND and 5V PIN"  />
+</figure></p>
+<p class="o-text">If you don&rsquo;t have a Capacitor at home, become friends with an electrician and ask them for one. That&rsquo;s what I did.</p>
+<p class="o-text">I got a 16V 470µF Capacitor. It works perfectly.</p>
+<h2 class="o-h2" id="the-solution-to-the-nas-problem">The solution to the NAS Problem</h2>
+<p class="o-text"><strong class="o-bold">ZFS</strong>. It&rsquo;s the solution, and it&rsquo;s amazing.</p>
+<p class="o-text">As I had a lot of drive failures and SSD disconnects, I could enjoy the recovery mechanisms of ZFS multiple times.</p>
+<p class="o-text">No matter if the Raspberry Pi failed or one of the SSDs, it&rsquo;s relatively easy to recover from a failed state. You can wipe the Raspberry Pi&rsquo;s MicroSD and one SSD and you can still recover from that state with ZFS.</p>
+<p class="o-text"><strong class="o-bold">Trust me</strong>, I tested all of this (more or less voluntarily).</p>
+<h3 class="o-h3" id="quick-zfs-setup">Quick ZFS Setup</h3>
+<p class="o-text">I will not go into details. Please read another tutorial for this.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">zpool create -f -o <span class="nv">autoexpand</span><span class="o">=</span>on -o <span class="nv">ashift</span><span class="o">=</span><span class="m">13</span> tank mirror /dev/sda /dev/sdb
+</code></pre></div><p class="o-text">This willl create a ZFS pool called <code>tank</code> from two external disks (<code>/dev/sda</code>and <code>/dev/sdb</code>).</p>
+<p class="o-text"><strong class="o-bold">The important thing of this command is the <code>ashift</code> value:</strong> This is the sector size which ZFS will use, it&rsquo;s recommend to set it to the physical block size of your SSD.</p>
+<p class="o-text">It can&rsquo;t be changed later on. If you set it too low, you will run into major performance issues.</p>
 <br>
 <br>
-<p class="o-text">Great, how do I use that configuration?</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nv">VIMENV</span><span class="o">=</span>prev vim file.txt
-</code></pre></div><p class="o-text">To make that even easier 😉, I add an alias to my <code>.zshrc</code> file:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">alias</span> <span class="nv">vimprev</span><span class="o">=</span><span class="s2">&#34;VIMENV=prev vim&#34;</span>
-</code></pre></div><br>
-<p class="o-text">After this, I simply <code>cd</code> to my <code>epub</code> dir and execute:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">vimprev <span class="k">$(</span>find . -type f<span class="k">)</span>
-</code></pre></div><p class="o-text">This will open all the files in the current dir in vim tabs. I can tab through them with space and backspace.</p>
-<p class="o-text">This took about 5 minutes for me, because our brains are normally extremely fast in pattern recognition and anomaly detection. If something looks fishy, I take a second look.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">zfs create -o <span class="nv">compression</span><span class="o">=</span>lz4 -o <span class="nv">quota</span><span class="o">=</span>600G tank/backup
+</code></pre></div><p class="o-text">The important thing about this is the compression, which you should enable. The compression saves you space and leads to a better read/write performance. Whereas the performance penalty for your Raspberry is relatively low.</p>
+<h3 class="o-h3" id="useful-zfs-commands">Useful ZFS Commands</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">zpool import -a
+</code></pre></div><p class="o-text">On my first reboot after ZFS Setup, I&rsquo;ve run in the problem where the Pool was not automatically imported. Removing the <code>/tank</code> dir and importing it again has done the trick.</p>
 <br>
-<p class="o-text">You are probably wondering how to exit vim:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">:qall!
-</code></pre></div><h2 class="o-h2" id="good-e-books">Good E-Books</h2>
-<p class="o-text">Interested on trying it yourself? Or do you want read some copyright free books (at least in the US)? Look at <a class="o-link" href="https://www.gutenberg.org/">Project Gutenberg</a> for royalty free E-Books.</p>
 <br>
-<p class="o-text">If you have any questions, let me know on Twitter (my DMs are open).</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">parted -l
+</code></pre></div><p class="o-text">Excellent Command to see all connected and mounted drives.</p>
+<br>
+<br>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">zpool status -sv
+</code></pre></div><p class="o-text">This will give you a verbose status of your ZPool. Useful if you want to see if you have any Errors or if one of your SSD is too slow (<code>-s</code>).</p>
+<br>
+<br>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">zpool events
+</code></pre></div><p class="o-text">More detailed error or event messages of your ZPool.</p>
+<br>
 
 <div id="rating" class="o-rating">
     <div class="o-inline-box"><span class="o-inline-box__important">Wait! Before you go</span>

@@ -9,6 +9,17 @@
     <copyright>All rights reserved.</copyright>
     <lastBuildDate>Tue, 07 Apr 2020 18:53:21 +0200</lastBuildDate><atom:link href="https://eitherway.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Build a Raspberry Pi NAS they said. It will be easy...</title>
+      <link>https://eitherway.io/posts/raspberry-pi-nas/</link>
+      <pubDate>Sat, 15 May 2021 13:18:56 +0200</pubDate>
+      
+      <guid>https://eitherway.io/posts/raspberry-pi-nas/</guid>
+      <description>Build a Raspberry Pi NAS they said. It will be easy...  * Nobody said that, I had the idea myself.
+ First off, what were the goals? The NAS should be:
+ redundant and protect from a drive failure. cheap. an easy to use solution for my onsite backup. powered by a single USB-C Cable.  Just connect two SSDs via USB to a Raspberry Pi 4 and run the NAS.</description>
+    </item>
+    
+    <item>
       <title>Searching an E-Book for malicious code with VIM</title>
       <link>https://eitherway.io/posts/epub-malicious-code/</link>
       <pubDate>Mon, 30 Nov 2020 15:46:58 +0200</pubDate>
