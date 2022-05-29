@@ -216,29 +216,29 @@ Build a Raspberry Pi <span class="o-h1__colored">NAS</span> they said. It will b
 <p class="o-text"><strong class="o-bold">Trust me</strong>, I tested all of this (more or less voluntarily).</p>
 <h3 class="o-h3" id="quick-zfs-setup">Quick ZFS Setup</h3>
 <p class="o-text">I will not go into details. Please read another tutorial for this.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">zpool create -f -o <span class="nv">autoexpand</span><span class="o">=</span>on -o <span class="nv">ashift</span><span class="o">=</span><span class="m">13</span> tank mirror /dev/sda /dev/sdb
-</code></pre></div><p class="o-text">This willl create a ZFS pool called <code>tank</code> from two external disks (<code>/dev/sda</code>and <code>/dev/sdb</code>).</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">zpool create -f -o <span class="nv">autoexpand</span><span class="o">=</span>on -o <span class="nv">ashift</span><span class="o">=</span><span class="m">13</span> tank mirror /dev/sda /dev/sdb
+</span></span></code></pre></div><p class="o-text">This willl create a ZFS pool called <code>tank</code> from two external disks (<code>/dev/sda</code>and <code>/dev/sdb</code>).</p>
 <p class="o-text"><strong class="o-bold">The important thing of this command is the <code>ashift</code> value:</strong> This is the sector size which ZFS will use, it&rsquo;s recommend to set it to the physical block size of your SSD.</p>
 <p class="o-text">It can&rsquo;t be changed later on. If you set it too low, you will run into major performance issues.</p>
 <br>
 <br>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">zfs create -o <span class="nv">compression</span><span class="o">=</span>lz4 -o <span class="nv">quota</span><span class="o">=</span>600G tank/backup
-</code></pre></div><p class="o-text">The important thing about this is the compression, which you should enable. The compression saves you space and leads to a better read/write performance. Whereas the performance penalty for your Raspberry is relatively low.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">zfs create -o <span class="nv">compression</span><span class="o">=</span>lz4 -o <span class="nv">quota</span><span class="o">=</span>600G tank/backup
+</span></span></code></pre></div><p class="o-text">The important thing about this is the compression, which you should enable. The compression saves you space and leads to a better read/write performance. Whereas the performance penalty for your Raspberry is relatively low.</p>
 <h3 class="o-h3" id="useful-zfs-commands">Useful ZFS Commands</h3>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">zpool import -a
-</code></pre></div><p class="o-text">On my first reboot after ZFS Setup, I&rsquo;ve run in the problem where the Pool was not automatically imported. Removing the <code>/tank</code> dir and importing it again has done the trick.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">zpool import -a
+</span></span></code></pre></div><p class="o-text">On my first reboot after ZFS Setup, I&rsquo;ve run in the problem where the Pool was not automatically imported. Removing the <code>/tank</code> dir and importing it again has done the trick.</p>
 <br>
 <br>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">parted -l
-</code></pre></div><p class="o-text">Excellent Command to see all connected and mounted drives.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">parted -l
+</span></span></code></pre></div><p class="o-text">Excellent Command to see all connected and mounted drives.</p>
 <br>
 <br>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">zpool status -sv
-</code></pre></div><p class="o-text">This will give you a verbose status of your ZPool. Useful if you want to see if you have any Errors or if one of your SSD is too slow (<code>-s</code>).</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">zpool status -sv
+</span></span></code></pre></div><p class="o-text">This will give you a verbose status of your ZPool. Useful if you want to see if you have any Errors or if one of your SSD is too slow (<code>-s</code>).</p>
 <br>
 <br>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">zpool events
-</code></pre></div><p class="o-text">More detailed error or event messages of your ZPool.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">zpool events
+</span></span></code></pre></div><p class="o-text">More detailed error or event messages of your ZPool.</p>
 <br>
 
 <div id="rating" class="o-rating">
@@ -307,6 +307,6 @@ Build a Raspberry Pi <span class="o-h1__colored">NAS</span> they said. It will b
     
 </script>
 
-<script src="https://eitherway.io/js/monsta.min.ba5d1fd87d2acefdbbad2dfdb5fae9eceac41bb7b1d7127c274f24460e531c21.js" integrity="sha256-ul0f2H0qzv27rS39tfrp7OrEG7ex1xJ8J08kRg5THCE="></script>
+<script src="https://eitherway.io/js/monsta.min.19763c7162909585cbbad04b2f3a34160b3ba06051cd6bc1711379d34edd1df7.js" integrity="sha256-GXY8cWKQlYXLutBLLzo0Fgs7oGBRzWvBcRN5007dHfc="></script>
 </body>
 </html>

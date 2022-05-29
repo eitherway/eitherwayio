@@ -182,41 +182,41 @@ Searching an <span class="o-h1__colored">E-Book</span> for <span class="o-h1__co
 </ol>
 <br>
 <p class="o-text">The specification suggests that there are some files packaged into the <code>.epub</code>. So I tried the old &lsquo;rename it to <code>.zip</code> and open it&rsquo; trick and voilà it worked:</p>
-<div class="highlight"><pre class="chroma"><code class="language-zsh" data-lang="zsh">$ tree
-.
-├── META-INF
-│   └── container.xml
-├── content.opf
-├── cover.jpeg
-├── images
-│   ├── 00002.jpeg
-│   ├── ...
-│   └── 00025.jpeg
-├── mimetype
-├── page_styles.css
-├── stylesheet.css
-├── text
-│   ├── part0000.html
-│   ├── part0001.html
-│   ├── ...
-│   └── part0031.html
-├── titlepage.xhtml
-└── toc.ncx
-</code></pre></div><p class="o-text">Lots of HTML, Images and CSS. When you open these <code>.ncx</code> and <code>.opf</code> files, it turns out these are XML.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">$ tree
+</span></span><span class="line"><span class="cl">.
+</span></span><span class="line"><span class="cl">├── META-INF
+</span></span><span class="line"><span class="cl">│   └── container.xml
+</span></span><span class="line"><span class="cl">├── content.opf
+</span></span><span class="line"><span class="cl">├── cover.jpeg
+</span></span><span class="line"><span class="cl">├── images
+</span></span><span class="line"><span class="cl">│   ├── 00002.jpeg
+</span></span><span class="line"><span class="cl">│   ├── ...
+</span></span><span class="line"><span class="cl">│   └── 00025.jpeg
+</span></span><span class="line"><span class="cl">├── mimetype
+</span></span><span class="line"><span class="cl">├── page_styles.css
+</span></span><span class="line"><span class="cl">├── stylesheet.css
+</span></span><span class="line"><span class="cl">├── text
+</span></span><span class="line"><span class="cl">│   ├── part0000.html
+</span></span><span class="line"><span class="cl">│   ├── part0001.html
+</span></span><span class="line"><span class="cl">│   ├── ...
+</span></span><span class="line"><span class="cl">│   └── part0031.html
+</span></span><span class="line"><span class="cl">├── titlepage.xhtml
+</span></span><span class="line"><span class="cl">└── toc.ncx
+</span></span></code></pre></div><p class="o-text">Lots of HTML, Images and CSS. When you open these <code>.ncx</code> and <code>.opf</code> files, it turns out these are XML.</p>
 <h2 class="o-h2" id="what-attacks-are-possible">What attacks are possible?</h2>
 <p class="o-text">I had only known that <code>.epub</code> files could contain malicious code, but not how this code could be executed.</p>
 <br>
 <p class="o-text">The specification states that one can do scripting with JavaScript. An attacker could read files from the disk or read contents from the clipboard. But: Your E-Book Reader has to be vulnerable to this.</p>
 <br>
 <p class="o-text">So we have to look for things like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;...&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-</code></pre></div><p class="o-text">or this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;javascript:...&#34;</span><span class="p">&gt;</span>Link<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;...&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p class="o-text">or this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;javascript:...&#34;</span><span class="p">&gt;</span>Link<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</span></span></code></pre></div><br>
 <p class="o-text">There is also <a class="o-link" href="https://security.stackexchange.com/questions/176223/how-to-detect-malicious-fb2-epub-file">a Security Stack Exchange Question</a>, which gives a hint that someone could also do an <a class="o-link" href="https://portswigger.net/web-security/xxe">XXE</a>.</p>
 <p class="o-text">These XML external entity injection can look like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;!DOCTYPE foo [ &lt;!ENTITY entity_name SYSTEM &#34;file:///etc/passwd&#34;&gt;</span> ]&gt;
-</code></pre></div><p class="o-text">I am just going to be ignorant how these attack exactly work. My target is to recognize the patterns of malicious code.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE foo [ &lt;!ENTITY entity_name SYSTEM &#34;file:///etc/passwd&#34;&gt;</span> ]&gt;
+</span></span></code></pre></div><p class="o-text">I am just going to be ignorant how these attack exactly work. My target is to recognize the patterns of malicious code.</p>
 <br>
 <p class="o-text">For those interested, look at the <a class="o-link" href="https://portswigger.net/web-security">Web Security Academy from PortSwigger</a>.</p>
 <h2 class="o-h2" id="searching-the-files">Searching the files</h2>
@@ -228,28 +228,28 @@ Searching an <span class="o-h1__colored">E-Book</span> for <span class="o-h1__co
 <p class="o-text">Luckily there is a text editor which many are obsessed with closing: VIM.</p>
 <br>
 <p class="o-text">This is easily one of the best and simplest solutions. By saying this, let&rsquo;s add something to my <code>.vimrc</code> configuration file.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="k">if</span> <span class="nv">$VIMENV</span> <span class="o">==</span> <span class="s1">&#39;prev&#39;</span>
-  noremap &lt;Space&gt; :n&lt;CR&gt;
-  noremap &lt;Backspace&gt; :N&lt;CR&gt;
-  <span class="nb">set</span> noswapfile
-endif
-</code></pre></div><p class="o-text">This tells vim if <code>VIMENV</code> is set to <code>prev</code>, remap space to move a tab forwards and remap Backspace to move a tab backwards.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="k">if</span> <span class="nv">$VIMENV</span> <span class="o">==</span> <span class="s1">&#39;prev&#39;</span>
+</span></span><span class="line"><span class="cl">  noremap &lt;Space&gt; :n&lt;CR&gt;
+</span></span><span class="line"><span class="cl">  noremap &lt;Backspace&gt; :N&lt;CR&gt;
+</span></span><span class="line"><span class="cl">  <span class="nb">set</span> noswapfile
+</span></span><span class="line"><span class="cl">endif
+</span></span></code></pre></div><p class="o-text">This tells vim if <code>VIMENV</code> is set to <code>prev</code>, remap space to move a tab forwards and remap Backspace to move a tab backwards.</p>
 <p class="o-text">Beware this trick/idea is from the amazing <a class="o-link" href="https://twitter.com/tomnomnom">Tomnomnom</a>. I recommend his <a class="o-link" href="https://www.youtube.com/results?search_query=tomnomnom">youtube videos</a> for more vim magic and bug bounty stuff.</p>
 <br>
 <br>
 <p class="o-text">Great, how do I use that configuration?</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nv">VIMENV</span><span class="o">=</span>prev vim file.txt
-</code></pre></div><p class="o-text">To make that even easier 😉, I add an alias to my <code>.zshrc</code> file:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">alias</span> <span class="nv">vimprev</span><span class="o">=</span><span class="s2">&#34;VIMENV=prev vim&#34;</span>
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nv">VIMENV</span><span class="o">=</span>prev vim file.txt
+</span></span></code></pre></div><p class="o-text">To make that even easier 😉, I add an alias to my <code>.zshrc</code> file:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">alias</span> <span class="nv">vimprev</span><span class="o">=</span><span class="s2">&#34;VIMENV=prev vim&#34;</span>
+</span></span></code></pre></div><br>
 <p class="o-text">After this, I simply <code>cd</code> to my <code>epub</code> dir and execute:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">vimprev <span class="k">$(</span>find . -type f<span class="k">)</span>
-</code></pre></div><p class="o-text">This will open all the files in the current dir in vim tabs. I can tab through them with space and backspace.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">vimprev <span class="k">$(</span>find . -type f<span class="k">)</span>
+</span></span></code></pre></div><p class="o-text">This will open all the files in the current dir in vim tabs. I can tab through them with space and backspace.</p>
 <p class="o-text">This took about 5 minutes for me, because our brains are normally extremely fast in pattern recognition and anomaly detection. If something looks fishy, I take a second look.</p>
 <br>
 <p class="o-text">You are probably wondering how to exit vim:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">:qall!
-</code></pre></div><h2 class="o-h2" id="good-e-books">Good E-Books</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">:qall!
+</span></span></code></pre></div><h2 class="o-h2" id="good-e-books">Good E-Books</h2>
 <p class="o-text">Interested on trying it yourself? Or do you want read some copyright free books (at least in the US)? Look at <a class="o-link" href="https://www.gutenberg.org/">Project Gutenberg</a> for royalty free E-Books.</p>
 <br>
 <p class="o-text">If you have any questions, let me know on Twitter (my DMs are open).</p>
@@ -320,6 +320,6 @@ endif
     
 </script>
 
-<script src="https://eitherway.io/js/monsta.min.ba5d1fd87d2acefdbbad2dfdb5fae9eceac41bb7b1d7127c274f24460e531c21.js" integrity="sha256-ul0f2H0qzv27rS39tfrp7OrEG7ex1xJ8J08kRg5THCE="></script>
+<script src="https://eitherway.io/js/monsta.min.19763c7162909585cbbad04b2f3a34160b3ba06051cd6bc1711379d34edd1df7.js" integrity="sha256-GXY8cWKQlYXLutBLLzo0Fgs7oGBRzWvBcRN5007dHfc="></script>
 </body>
 </html>
