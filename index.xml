@@ -9,6 +9,18 @@
     <copyright>All rights reserved.</copyright>
     <lastBuildDate>Tue, 07 Apr 2020 18:53:21 +0200</lastBuildDate><atom:link href="https://eitherway.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Swift Learning</title>
+      <link>https://eitherway.io/posts/swift-learning/</link>
+      <pubDate>Sun, 29 May 2022 12:32:08 +0200</pubDate>
+      
+      <guid>https://eitherway.io/posts/swift-learning/</guid>
+      <description>Swift and SwiftUI Learnings  Tips, Tricks and Stuff I want to remember
+   Don&amp;rsquo;t download Xcode from the App Store. Xcode is huge and takes a long time installing from the App Store. Instead download it from Apple directly. This way you can see a progress bar and it&amp;rsquo;s way faster.
+  This is a struct (I would call it a dict in JS):
+struct Person { var firstName = &amp;#34;&amp;#34; var lastName = &amp;#34;&amp;#34; }   Difference between variables and properties.</description>
+    </item>
+    
+    <item>
       <title>Build a Raspberry Pi NAS they said. It will be easy...</title>
       <link>https://eitherway.io/posts/raspberry-pi-nas/</link>
       <pubDate>Sat, 15 May 2021 13:18:56 +0200</pubDate>
